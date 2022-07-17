@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %} Welcome to FlaskBlog {% endblock %}
+
+{% block content %}
+<form method="post">
+    <div class="grid grid-cols-3 gap-x-6 gap-y-2 px-12">
+        <label class="block">
+            <span class="text-gray-700">From</span>
+            <input type="text" class="mt-1 block w-full" placeholder="RUH" name="from" required/>
+        </label>
+        <label class="block">
+            <span class="text-gray-700">To</span>
+            <input type="text" class="mt-1 block w-full" placeholder="DXB" name="to" required/>
+        </label>
+        <div class="grid grid-cols-2 gap-x-2">
+            <label class="block">
+                <span class="text-gray-700">Trip Type</span>
+                <select class="block w-full mt-1" name="journey_type" >
+                <option value="One Way">One Way</option>
+                <option value="Return">Return</option>
+                <option value="Circle">Circle</option>
+                </select>
+            </label>
+            <label class="block">
+                <span class="text-gray-700">Class</span>
+                <select class="block w-full mt-1" name="class" >
+                <option value="Economy">Economy</option>
+                <option value="First">First</option>
+                <option value="Business">Business</option>
+                <option value="PremiumEconomy">PremiumEconomy</option>
+                </select>
+            </label>
+        </div>
+        <label class="block">
+            <span class="text-gray-700">Departur At</span>
+            <input type="date" class="form-input mt-1 block w-full" name="dep_date" required/>
+        </label>
+        <label class="block">
+            <span class="text-gray-700">Return At</span>
+            <input type="date" class="form-input mt-1 block w-full" name="ret_date"/>
+        </label>
+        
+        <div class="grid grid-cols-3 gap-2">
+            <label class="block">
+                <span class="text-gray-700">Adults</span>
+                <input type="number" class="form-input mt-1 block w-full" name="adult" value="1"/>
+            </label>
+            <label class="block">
+                <span class="text-gray-700">Childs</span>
+                <input type="number" class="form-input mt-1 block w-full" name="chaild" value="0"/>
+            </label>
+            <label class="block">
+                <span class="text-gray-700">Infants</span>
+                <input type="number" class="form-input mt-1 block w-full" name="infants" value="0"/>
+            </label>
+        </div>
+        <div class="col-span-3 justify-self-center mt-12">
+            <button type="submit" class="px-10 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 text-white hover:scale-110 transition ease-in-out hover:-translate-y-1"> Search</button>
+        </div>
+    </div>  
+</form>
+{% endblock %}

@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-5xl text-center pb-4">{{url_for("booking")}}</h1>
+
+<div class="grid grid-cols-3 gap-x-4 px-4">
+    <div class="border border-gray-400 rounded-sm bg-white col-span-2 p-6 text-sm ">
+
+        <div class="grid grid-cols-1 divide-y divide-gray-400">
+            <form method="post" id="form" name="form">
+                {% for p in res.breakDown %}
+                <div class="py-4">
+                    <h1 class="text-xl py-4">{{p.T}} </h1>
+                    
+                        <div class="flex flex-row py-1">
+                            <label class="block basis-5/12 px-1">
+                                <span class="text-gray-700 ">First Name</span>
+                                <div class="flex flex-row ">
+                                    <select class=" mt-1 block" name={{p.T[0]}}{{p.T[-1]}}-title>
+                                        <option value="Mr">Mr</option>
+                                        <option value="Ms">Ms</option>
+                                        <option value="Mrs">Mrs</option>
+                                    </select>
+                                    <input type="text" class="mt-1 block" placeholder="" name="{{p.T[0]}}{{p.T[-1]}}-first_name" required />
+                                </div>
+                            </label>
+                            <label class="block basis-3/12 px-1">
+                                <span class="text-gray-700">Middel Name</span>
+                                <input type="text" class="mt-1 block w-full" placeholder="" name="{{p.T[0]}}{{p.T[-1]}}-middel_name" />
+                            </label>
+                            <label class="block basis-4/12 px-1">
+                                <span class="text-gray-700">Last Name</span>
+                                <input type="text" class="mt-1 block w-full" placeholder="" name="{{p.T[0]}}{{p.T[-1]}}-last_name" required />
+                            </label>
+                        </div>
+                        <div class="flex flex-row py-1">
+                            <label class="block basis-4/12">
+                                <span class="text-gray-700">Date of birth</span>
+                                <input type="date" class="form-input mt-1 block w-full" name="{{p.T[0]}}{{p.T[-1]}}-dob" required />
+                            </label>
+                            <label class="block basis-4/12 pl-12">
+                                <span class="text-gray-700">Gender</span>
+                                <select class=" mt-1 block" name="{{p.T[0]}}{{p.T[-1]}}-gender">
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+
+                                </select>
+                            </label>
+                        </div>
+                        <div class="flex flex-row py-1">
+                            <label class="block basis-6/12">
+                                <span class="text-gray-700 ">Nationality</span>
+                                <select class=" mt-1 block w-full" name="{{p.T[0]}}{{p.T[-1]}}-issue_country">
+                                    <option value="SA">Saudi Arabia</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="flex flex-row py-1">
+                            <label class="block basis-4/12 px-1">
+                                <span class="text-gray-700">Passport number</span>
+                                <input type="text" class="mt-1 block w-full" placeholder="" name="{{p.T[0]}}{{p.T[-1]}}-passport_no"
+                                    required />
+                            </label>
+                            <label class="block basis-4/12 px-1">
+                                <span class="text-gray-700 ">Issuing country</span>
+                                <select class=" mt-1 block w-full" name="{{p.T[0]}}{{p.T[-1]}}-issue_country">
+                                    <option value="SA">Saudi Arabia</option>
+                                </select>
+                            </label>
+                            <label class="block basis-4/12 px-1">
+                                <span class="text-gray-700">Passport Expiry Date</span>
+                                <input type="date" class="form-input mt-1 block w-full" name="{{p.T[0]}}{{p.T[-1]}}-passport_expiry"
+                                    required />
+                            </label>
+                        </div>
+                    
+                </div>
+                {% endfor %}
+                <div class="">
+                    
+                        <h1 class="text-3xl py-4">Contact Details</h1>
+                        <div class="flex flex-row py-1">
+                            <label class="block basis-7/12 px-1">
+                                <span class="text-gray-700 ">First Name</span>
+                                <div class="flex flex-row ">
+                                    <select class=" mt-1 block w-auto" name="c-label">
+                                        <option value="One Way">Mr</option>
+                                        <option value="Return">Ms</option>
+                                        <option value="Circle">Mrs</option>
+                                    </select>
+                                    <input type="text" class="mt-1 block" placeholder="" name="c-first_name" required />
+                                </div>
+                            </label>
+                            <label class="block basis-5/12 px-1">
+                                <span class="text-gray-700">Last Name</span>
+                                <input type="text" class="mt-1 block" placeholder="" name="c-last_name" required />
+                            </label>
+                        </div>
+                        <div class="flex flex-row py-1">
+                            <label class="block basis-6/12 px-1">
+                                <span class="text-gray-700">Email</span>
+                                <input type="text" class="mt-1 block w-full" value="test@gmail.com" name="c-email"
+                                    required />
+                            </label>
+                        </div>
+                        <div class="flex flex-row py-1">
+                            <label class="block basis-6/12 px-1">
+                                <span class="text-gray-700">Mobile number</span>
+                                <div class="flex flex-row ">
+                                    <select class=" mt-1 block" name="c-areacode">
+                                        <option value="966">+966</option>
+                                    </select>
+                                    <input type="text" class="mt-1 block" value="1654684741" name="c-phone_NO" required />
+                                </div>
+                            </label>
+                        </div>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <div class="border border-gray-400 rounded-sm bg-white py-6 px-1">
+            <h1 class="text-xl pt-1 pb-2 text-center">Trip Price Break Down</h1>
+            <div class="grid grid-cols-1 divide-y divide-gray-300">
+                {% for p in res.breakDown %}
+                <p class="text-lg pt-2 px-2">{{p.T}}</p>
+                <div class="grid grid-cols-2 px-4">
+                    <p>Fare</p>
+                    <p class="text-right">{{p.prices.base}}</p>
+                    <p>Tax & fees</p>
+                    <p class="text-right">{{p.prices.tax}}</p>
+                    <div> Total</div>
+                    <div class="text-right"> {{p.prices.total}}</div>
+                </div>
+                {% endfor %}
+                <p class="text-lg pt-8 px-2">Total Fare</p>
+                <div class="grid grid-cols-2 px-2">
+                    <p>Fare</p>
+                    <p class="text-right">{{res.total.base}}</p>
+                    <p>Tax</p>
+                    <p class="text-right">{{res.total.tax}}</p>
+                    <p>Service fee</p>
+                    <p class="text-right">{{res.total.service}}</p>
+                    <div> Total</div>
+                    <div class="text-right"> {{res.total.total}} </div>
+                </div>
+            </div>
+            <div class="flex flex-row justify-center pt-8">
+                <button type="submit" form="form" name="F-FareSourceCode"
+                    class="px-10 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 text-white hover:scale-110 transition ease-in-out hover:-translate-y-1" value={{res.FareSourceCode}}>
+                    Book</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <script>
+    function callForms(){
+        var f = document.forms;
+        var postData = []; 
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://127.0.0.1:5001/book", true);
+        xhr.onreadystatechange = function()
+        {
+          if(this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText)
+            document.innerHTML = this.responseText;
+          } else {
+            console.log("something wrong");
+          }
+        }
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send(postData.join("&"));
+          
+    }
+</script> -->
+{% endblock %}

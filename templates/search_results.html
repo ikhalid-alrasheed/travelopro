@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-5xl text-center">{% block title %} Flights from {{res.from}} to {{res.to}} {% endblock %}</h1>
+
+<div class="pt-12 grid grid-cols-1 gap-y-1 content-center">
+    {% for f in flights %}
+<div class="justify-self-center p-6  w-11/12 bg-white rounded-lg border border-gray-200 shadow-md ">
+    <div class="grid grid-cols-5 gap-4 content-center">
+        <div class="grid grid-rows-3 gap-y-2 content-center">
+            <div class="text-sm"> AirLine -> {{f.airline}}</div>
+            <div class="text-sm"> Flight -> {{f.flight_info}} / {{f.flight_type}}</div>
+            <div class="text-sm"> Seats Remaining -> {{f.sets}}</div>
+        </div>
+
+        <div class="col-span-3 grid grid-cols-2 ">
+            <div class="place-self-center"> from : {{f.from_airport}} </div>
+            <div class="place-self-center"> to : {{f.to_airport}}</div>
+            <div class="place-self-center"> duration : {{f.trip_duration}}</div>
+            <div class="place-self-center"> stops : {{f.stops}}</div>
+        </div>
+
+        <div class="grid-rows-2 grid  content-center">
+            <div class="text-center">{{f.price}}</div>
+            <div>
+                <form method="post">
+                    <button type="submit" name="select" value={{f.FareSourceCode}} class="px-10 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 text-white hover:scale-110 transition ease-in-out hover:-translate-y-1"> Select</button>
+                </form>
+            </div>
+        </div>
+    
+    </div>  
+</div>
+{% endfor %}
+</div>
+{% endblock %}
